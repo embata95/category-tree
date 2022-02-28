@@ -10,7 +10,7 @@ router.register(r'categories', SimpleCategories, basename='categories')
 router.register(r'levels/(?P<level>\d+)', CategoriesLevel, basename='levels')
 router.register(r'children/(?P<parent>\d+)', CategoriesByParent, basename='children')
 router.register(r'similarity', CategoriesSimilarity, basename='similarity')
-router.register(r'rabbithole', LongestRabbitHole, basename='rabbithole')
+# router.register(r'rabbithole', LongestRabbitHole, basename='rabbithole')
 router.register(r'islands', CategoriesIslands, basename='islands')
 
 urlpatterns = [
