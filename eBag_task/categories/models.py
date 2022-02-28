@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Q
 from django.db.models.signals import m2m_changed
 
 
@@ -17,17 +18,15 @@ class Category(models.Model):
         on_delete=models.CASCADE,
         blank=True,
         null=True,
-        related_name="children",
+        related_name="children"
     )
     similar_to = models.ManyToManyField(
         "self",
         blank=True,
         null=True,
-        default=None,
-        limit_choices_to=()
+        default=None
     )
 
-    # TODO: field similar to be represented as an object
     # TODO: provide some message for self parent posts/ self similarity
 
     def _prepare_related_fields_for_save(self, operation_name):
@@ -49,13 +48,12 @@ class Category(models.Model):
                     field.delete_cached_value(self)
 
         category = self
-        q = Category.objects.filter(pk=self.id).prefetch_related('similar_to')
-        if category.parent_id == category.id:
+        if category.parent_id and category.parent_id == category.id:
             raise ValueError("Can't set as self parent.")
 
     def __str__(self):
         if self.parent:
-            return f"{self.name} in category {self.parent.name}"
+            return f"{self.name}"
         else:
             return self.name
 
