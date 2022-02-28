@@ -11,4 +11,8 @@ class RelationAdmin(admin.ModelAdmin):
     inlines = [RoleInline]
 
 
-admin.site.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'parent')
+
+
+admin.site.register(Category, CategoryAdmin)

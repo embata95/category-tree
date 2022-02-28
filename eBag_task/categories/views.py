@@ -1,5 +1,7 @@
 from django.http import HttpResponse
 from rest_framework import viewsets
+from rest_framework.response import Response
+
 from eBag_task.categories.models import Category
 from eBag_task.categories.serializers import CategoriesRootSerializer, SimpleCategoriesSerializer, \
     CategoriesSimilaritySerializer
@@ -57,20 +59,22 @@ class CategoriesByParent(viewsets.ModelViewSet):
 
 
 class CategoriesSimilarity(viewsets.ModelViewSet):
+    http_method_names = ["get", "put", "patch", "delete"]
 
     def destroy(self, request, *args, **kwargs):
         if 'pk' in self.kwargs:
             category = Category.objects.get(pk=self.kwargs['pk'])
             category.similar_to.set([])
             category.save()
-            return HttpResponse(content="Successfully deleted!")
-        return HttpResponse(status=400, content="Bad request!")
+            return Response({"message": "Successfully cleared!"})
+        return Response({"message": "Bad request!"})
     queryset = Category.objects.all()
     serializer_class = CategoriesSimilaritySerializer
 
 
 class ShortestRabbitHole(viewsets.ModelViewSet):
     http_method_names = ["get"]
+    # Should keep track of visited nodes, so we don't move back to a visited node
     paths = {}
     start = None
     end = None
