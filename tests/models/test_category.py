@@ -40,3 +40,6 @@ class CategoryTestCase(TestCase):
         temp_obj = self.second_obj
         self.assertRaises(ValueError, temp_obj.similar_to.add, self.second_obj)
 
+    def test_on_delete_cascade(self):
+        self.first_obj.delete()
+        self.assertFalse(Category.objects.exists())

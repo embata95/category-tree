@@ -28,7 +28,7 @@ class SimpleCategoriesSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'parent': {'write_only': True},
             'similar_to': {'write_only': True, 'many': True},
-            'similar_names': {'read_only': True}
+            'similar_categories': {'read_only': True}
         }
 
 
