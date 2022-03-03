@@ -22,7 +22,6 @@ class Category(models.Model):
     similar_to = models.ManyToManyField(
         "self",
         blank=True,
-        null=True,
         default=None
     )
 
