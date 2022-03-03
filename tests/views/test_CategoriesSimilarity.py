@@ -97,6 +97,18 @@ class CategoriesSimilarityTestCase(CoreTest):
         }
         self.assertEqual(returned_json, category1)
 
+    def test_delete_similar_categories(self):
+        self.client.delete(reverse("similarity-detail", kwargs={'pk': 1}))
+        returned_json = self.get_response_json(reverse("similarity-detail", kwargs={'pk': 1}))
+        category1 = {
+            "id": 1,
+            "name": "First object",
+            "description": "Some description that doesn't matter",
+            "image": returned_json['image'],
+            'similar_categories': []
+        }
+        self.assertEqual(returned_json, category1)
+
     def test_extra_kwargs_for_fields(self):
         obj3 = Category.objects.create(
             name="Third object",
