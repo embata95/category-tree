@@ -1,6 +1,6 @@
 import tempfile
 from django.urls import reverse
-from eBag_task.categories.models import Category
+from categories.models import Category
 from tests.core import CoreTest
 
 
@@ -17,7 +17,9 @@ class CategoriesLevelTestCase(CoreTest):
             "name": "First object",
             "description": "Some description that doesn't matter",
             "image": returned_json[0]['image'],
-            'similar_categories': ['Second object']
+            'similar_categories': [
+                {'name': 'Second object'}
+            ]
         }
         category3 = {
             "id": 3,
@@ -35,6 +37,8 @@ class CategoriesLevelTestCase(CoreTest):
             "name": "Second object",
             "description": "Some other description that doesn't matter",
             "image": returned_json[0]['image'],
-            'similar_categories': ['First object']
+            'similar_categories': [
+                {'name': 'First object'}
+            ]
         }
         self.assertEqual(returned_json, [category2])

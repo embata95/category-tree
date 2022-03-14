@@ -1,5 +1,5 @@
 from django.urls import reverse
-from eBag_task.categories.models import Category
+from categories.models import Category
 from tests.core import CoreTest
 
 
@@ -11,14 +11,18 @@ class SimpleCategoriesTestCase(CoreTest):
             "name": "First object",
             "description": "Some description that doesn't matter",
             "image": returned_json[0]['image'],
-            'similar_categories': ['Second object']
+            'similar_categories': [
+                {'name': 'Second object'}
+            ]
         }
         category2 = {
             "id": 2,
             "name": "Second object",
             "description": "Some other description that doesn't matter",
             "image": returned_json[1]['image'],
-            'similar_categories': ['First object']
+            'similar_categories': [
+                {'name': 'First object'}
+            ]
         }
         self.assertEqual(returned_json, [category1, category2])
 
@@ -38,7 +42,10 @@ class SimpleCategoriesTestCase(CoreTest):
             "name": "test_name",
             "description": "test_description",
             "image": returned_json['image'],
-            "similar_categories": ['First object', 'Second object'],
+            "similar_categories": [
+                {'name': 'First object'},
+                {'name': 'Second object'}
+            ],
         }
         self.assertEqual(returned_json, category3)
 

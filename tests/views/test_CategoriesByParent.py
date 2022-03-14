@@ -11,7 +11,9 @@ class CategoriesByParentTestCase(CoreTest):
             "name": "Second object",
             "description": "Some other description that doesn't matter",
             "image": returned_json[0]['image'],
-            'similar_categories': ['First object']
+            'similar_categories': [
+                {'name': 'First object'}
+            ]
         }
         self.assertEqual(returned_json, [category2])
         self.validate_get_only(reverse("children-list", kwargs={'parent': 1}))

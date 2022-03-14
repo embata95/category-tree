@@ -1,5 +1,5 @@
 from django.test import TestCase
-from eBag_task.categories.models import Category
+from categories.models import Category
 import tempfile
 
 

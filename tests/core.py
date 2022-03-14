@@ -3,7 +3,7 @@ import tempfile
 from PIL import Image
 from rest_framework.utils import json
 from django.test import TestCase
-from eBag_task.categories.models import Category
+from categories.models import Category
 
 
 class CoreTest(TestCase):

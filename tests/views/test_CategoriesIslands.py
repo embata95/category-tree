@@ -2,7 +2,7 @@ import tempfile
 
 from django.urls import reverse
 
-from eBag_task.categories.models import Category
+from categories.models import Category
 from tests.core import CoreTest
 
 

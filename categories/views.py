@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
-from eBag_task.categories.models import Category
-from eBag_task.categories.serializers import CategoriesRootSerializer, SimpleCategoriesSerializer, \
+from categories.models import Category
+from categories.serializers import CategoriesRootSerializer, SimpleCategoriesSerializer, \
     CategoriesSimilaritySerializer
 
 

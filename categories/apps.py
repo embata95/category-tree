@@ -3,4 +3,4 @@ from django.apps import AppConfig
 
 class CategoriesConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'eBag_task.categories'
+    name = 'categories'

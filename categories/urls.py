@@ -1,8 +1,8 @@
 from django.urls import path, include
 from rest_framework import routers
 
-from eBag_task.categories.views import CategoriesRoot, SimpleCategories, CategoriesLevel, CategoriesByParent, \
-    LongestRabbitHole, CategoriesSimilarity, CategoriesIslands
+from categories.views import CategoriesRoot, SimpleCategories, CategoriesLevel, CategoriesByParent, \
+    CategoriesSimilarity, CategoriesIslands
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'roots', CategoriesRoot, basename='roots')
