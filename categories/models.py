@@ -25,8 +25,6 @@ class Category(models.Model):
         default=None
     )
 
-    # TODO: provide some message for self parent posts/ self similarity
-
     def _prepare_related_fields_for_save(self, operation_name):
         for field in self._meta.concrete_fields:
             if field.is_relation and field.is_cached(self):
@@ -45,15 +43,11 @@ class Category(models.Model):
                 if getattr(obj, field.target_field.attname) != getattr(self, field.attname):
                     field.delete_cached_value(self)
 
-        category = self
-        if category.parent_id and category.parent_id == category.id:
+        if self.parent_id and self.parent_id == self.id:
             raise ValueError("Can't set as self parent.")
 
     def __str__(self):
-        if self.parent:
-            return f"{self.name}"
-        else:
-            return self.name
+        return self.name
 
 
 m2m_changed.connect(similar_to_changed, sender=Category.similar_to.through)
