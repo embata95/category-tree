@@ -2,8 +2,7 @@
 *.log
 *.pot
 *.pyc
-__pycache__
-eBag_task/__pycache__
+eBag_task/__pycache__/
 db.sqlite3
 media
 
