@@ -3,6 +3,7 @@
 *.pot
 *.pyc
 __pycache__
+eBag_task/__pycache__
 db.sqlite3
 media
 
@@ -16,6 +17,7 @@ media
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+.idea
 
 # AWS User-specific
 .idea/**/aws.xml
