@@ -1,24 +1,8 @@
-from django.test import TestCase
+from categories.tests.common_test_set_up import CoreTest
 from categories.models import Category
-import tempfile
 
 
-class CategoryTestCase(TestCase):
-    def setUp(self):
-        self.first_obj = Category.objects.create(
-            name="First object",
-            description="Some description that doesn't matter",
-            image=tempfile.NamedTemporaryFile(suffix=".jpg").name,
-            parent=None,
-        )
-        self.second_obj = Category.objects.create(
-            name="First object",
-            description="Some description that doesn't matter",
-            image=tempfile.NamedTemporaryFile(suffix=".jpg").name,
-            parent=self.first_obj,
-        )
-        self.second_obj.similar_to.add(self.first_obj)
-
+class CategoryTestCase(CoreTest):
     def test_parent_is_set_correctly(self):
         self.assertEqual(self.second_obj.parent, self.first_obj)
 
