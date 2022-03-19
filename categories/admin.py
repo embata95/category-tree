@@ -4,7 +4,7 @@ from categories.models import Category
 
 class RoleInline(admin.StackedInline):
     model = Category
-    filter_horizontal = 'parent'
+    filter_horizontal = "parent"
 
 
 class RelationAdmin(admin.ModelAdmin):
@@ -12,7 +12,7 @@ class RelationAdmin(admin.ModelAdmin):
 
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'parent')
+    list_display = ("name", "parent")
 
 
 admin.site.register(Category, CategoryAdmin)

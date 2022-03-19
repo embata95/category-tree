@@ -12,26 +12,26 @@ class CoreTest(TestCase):
             name="First object",
             description="Some description that doesn't matter",
             image=tempfile.NamedTemporaryFile(suffix=".jpg").name,
-            parent=None
+            parent=None,
         )
         self.second_obj = Category.objects.create(
             name="Second object",
             description="Some other description that doesn't matter",
             image=tempfile.NamedTemporaryFile(suffix=".jpg").name,
-            parent=self.first_obj
+            parent=self.first_obj,
         )
         self.second_obj.similar_to.add(self.first_obj)
 
     def get_response_json(self, url):
-        response = self.client.get(url, format='json')
+        response = self.client.get(url, format="json")
         response.render()
         return json.loads(response.content)
 
     def generate_photo_file(self):
         file = io.BytesIO()
-        image = Image.new('RGBA', size=(100, 100), color=(155, 0, 0))
-        image.save(file, 'png')
-        file.name = 'test.png'
+        image = Image.new("RGBA", size=(100, 100), color=(155, 0, 0))
+        image.save(file, "png")
+        file.name = "test.png"
         file.seek(0)
         return file
 
